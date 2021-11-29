@@ -2,17 +2,14 @@
 
 
 fn main() {
-  let mut message = "Hello World";
-
-  println!("{}", message);
-  message = "Hi there";
-  println!("Some text: {}", message);
-
-  let mut age = 10;
-  println!("{}", age);
-  age = 30;
-  println!("{}", age);
+  let message = "Hello World";
+  let message_2 = print_welcome(message);
+  println!("{}", message_2);
 }
 
-// binary executable code or library
-// LLVM -> binary
+fn print_welcome(text: &str) -> &str {
+  println!("{}", text);
+  let new_message = "Hi There";
+  // return new_message;
+  new_message
+}
