@@ -1,14 +1,20 @@
 
 
 fn main() {
-    let custom_num = 98_000; // 98000
-    let hex_num = 0xfa;
-    let bin_num = 0b0010_1011;
+    let float_num: f32 = 3.14;
+    let float_num_2: f64 = 3.2334327489;
 
-    let byte_num = b'A';
+    let tup: (i32, &str, u8) = (20, "Hello", 1);
 
-    println!("{}", custom_num);
-    println!("{}", hex_num);
-    println!("{}", bin_num);
-    println!("{}", byte_num);
+    println!("{}", tup.1);
+
+    let (a, b, c) = tup;
+    println!("{}", a);
+
+    let x = [1, 5, 6, 7];
+
+    println!("{}", x[2]);
+
+    let y = [2; 6]; // [2, 2, 2, 2, 2, 2]
+    println!("{}", y[5]);
 }
