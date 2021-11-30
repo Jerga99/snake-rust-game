@@ -2,11 +2,13 @@
 
 fn main() {
    let message = String::from("Hello");
-   print_message(message);
+   let message = extend_message(message);
+
+   println!("{}", message);
 }
 
-fn print_message(a: String) {
-    println!("{}", a);
-    let c = a;
+fn extend_message(mut a: String) -> String {
+    a.push_str(" World");
+    a
 }
 
