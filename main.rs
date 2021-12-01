@@ -24,6 +24,3 @@ fn main() {
     // println!("Value of c: {:p}", c);
     // println!("Value of d: {:p}", d);
 }
-
-
-
