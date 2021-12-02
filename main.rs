@@ -8,37 +8,37 @@ struct Person {
 }
 
 impl Person {
-    // associated function
-    fn some_function() {
-        println!("some_function");
+    fn new() -> Person {
+        Person {
+            name: "Default".to_string(),
+            last_name: "Default".to_string(),
+            age: 0
+        }
     }
 
-    // method
-    // first parameter is always self, which represents the instance of the struct the
-    // method is being called on
-    // Within an impl block, the type Self is an alias for the current type
-    fn display_age(&self) {
-       println!("Current Age: {}", self.age);
+    fn from(name: String, last_name: String, age: u32) -> Person {
+        Person {
+            name,
+            last_name,
+            age
+        }
+    }
+
+    fn change_age(&mut self, new_age: u32) {
+       self.age = new_age;
     }
 }
 
 fn main() {
-    Person::some_function();
+    let mut person = Person::new();
+    let person_2 = Person::from(
+        String::from("John"),
+        String::from("Snow"),
+        35
+    );
 
-    let person =  Person {
-       name: "Filip".to_string(),
-       last_name: "Jerga".to_string(),
-       age: 30,
-    };
-
-    let person_2 =  Person {
-        name: "John".to_string(),
-        last_name: "Snow".to_string(),
-        age: 35,
-     };
-
-    person.display_age();
-    person_2.display_age();
+    person.change_age(50);
 
     println!("{} {} {}", person.name, person.last_name, person.age);
+    println!("{} {} {}", person_2.name, person_2.last_name, person_2.age);
 }
