@@ -2,8 +2,9 @@
 
 fn main() {
     let mut message = String::from("Hello");
-    let name = "Filip";
+    let slice = &message[2..4]; // 2 -> 3
+    // H E L L O
+    // 0 1 2 3 4
 
-    message.push_str(" World");
-    // name.push_str(" Jerga");
+    println!("{}", slice);
 }
