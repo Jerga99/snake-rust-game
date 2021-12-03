@@ -1,5 +1,13 @@
 
 
+
+trait Log {
+    fn display_info(&self);
+    fn alert_something(&self) {
+        println!("Default implementation!!!!!!!")
+    }
+}
+
 #[derive(Debug)]
 enum PersonId {
   Passport(u32),
@@ -14,6 +22,22 @@ struct Person {
 }
 
 struct Animal(String);
+
+impl Log for Animal {
+    fn display_info(&self) {
+        println!("{}", self.0)
+    }
+
+    fn alert_something(&self) {
+        println!("ANIMAL implementation!!!!!!!")
+    }
+}
+
+impl Log for Person {
+    fn display_info(&self) {
+        println!("{} {} {} {:?}", self.name, self.last_name, self.age, self.id)
+    }
+}
 
 impl Person {
     fn new() -> Person {
@@ -37,48 +61,14 @@ impl Person {
     fn change_age(&mut self, new_age: u32) {
        self.age = new_age;
     }
-
-    fn display_info(&self) {
-        println!("{} {} {} {:?}", self.name, self.last_name, self.age, self.id)
-    }
 }
 
 fn main() {
     let mut person = Person::new();
-    let person_2 = Person::from(
-        String::from("John"),
-        String::from("Snow"),
-        35,
-        PersonId::Passport(123172371)
-    );
+    let animal = Animal(String::from("dog"));
 
     person.change_age(38);
-    person.display_info();
 
-    check_person_id(person.id);
-    check_person_id(person_2.id);
-}
-
-fn check_person_id(id: PersonId) {
-
-    if let PersonId::Passport(num) = id {
-        println!("It matching Passport {}", num);
-    } else {
-        println!("It doesn't match!");
-    }
-
-    let result = match id {
-        PersonId::IndentityCard(x, y, z) => {
-            y
-        },
-        PersonId::Passport(val) => {
-            val
-        }
-    };
-
-    let animal = Animal(String::from("dog"));
-    let Animal(animal_type) = animal;
-
-    println!("{}", animal_type);
-    println!("Result: {}", result);
+    person.alert_something();
+    animal.alert_something();
 }
