@@ -69,6 +69,20 @@ fn main() {
 
     person.change_age(38);
 
-    person.alert_something();
-    animal.alert_something();
+    log_info(person);
+    log_info_2(&animal);
+}
+
+// impl makes the compiler determine type at the compile time
+// it will create multiple versions of the function, depending on
+// how many types Log trait implements (Person, Animal)
+fn log_info(val: impl Log) {
+    val.alert_something();
+}
+
+
+// dyn is short for dynamic, and says that function should perform dynamic dispatch
+// decission of exactly which function to call at the runtime
+fn log_info_2(val: &dyn Log) {
+    val.alert_something();
 }
