@@ -1,10 +1,16 @@
 
 
+#[derive(Debug)]
+enum PersonId {
+  Passport,
+  IndentityCard,
+}
 
 struct Person {
     name: String, // fields
     last_name: String,
     age: u32,
+    id: PersonId,
 }
 
 impl Person {
@@ -12,15 +18,17 @@ impl Person {
         Person {
             name: "Default".to_string(),
             last_name: "Default".to_string(),
-            age: 0
+            age: 0,
+            id: PersonId::IndentityCard
         }
     }
 
-    fn from(name: String, last_name: String, age: u32) -> Person {
+    fn from(name: String, last_name: String, age: u32, id: PersonId) -> Person {
         Person {
             name,
             last_name,
-            age
+            age,
+            id
         }
     }
 
@@ -34,11 +42,10 @@ fn main() {
     let person_2 = Person::from(
         String::from("John"),
         String::from("Snow"),
-        35
+        35,
+        PersonId::Passport
     );
 
-    person.change_age(50);
-
-    println!("{} {} {}", person.name, person.last_name, person.age);
-    println!("{} {} {}", person_2.name, person_2.last_name, person_2.age);
+   println!("{:?}", person.id);
+   println!("{:?}", person_2.id);
 }
