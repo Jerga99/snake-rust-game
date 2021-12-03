@@ -59,6 +59,12 @@ fn main() {
 
 fn check_person_id(id: PersonId) {
 
+    if let PersonId::Passport(num) = id {
+        println!("It matching Passport {}", num);
+    } else {
+        println!("It doesn't match!");
+    }
+
     let result = match id {
         PersonId::IndentityCard(x, y, z) => {
             y
