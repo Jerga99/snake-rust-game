@@ -2,8 +2,8 @@
 
 #[derive(Debug)]
 enum PersonId {
-  Passport,
-  IndentityCard,
+  Passport(u32),
+  IndentityCard(u32, u32, u32),
 }
 
 struct Person {
@@ -19,7 +19,7 @@ impl Person {
             name: "Default".to_string(),
             last_name: "Default".to_string(),
             age: 0,
-            id: PersonId::IndentityCard
+            id: PersonId::IndentityCard(540, 320, 100)
         }
     }
 
@@ -43,7 +43,7 @@ fn main() {
         String::from("John"),
         String::from("Snow"),
         35,
-        PersonId::Passport
+        PersonId::Passport(123172371)
     );
 
    println!("{:?}", person.id);
