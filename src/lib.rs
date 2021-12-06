@@ -1,6 +1,11 @@
 
+mod another_lib_v2;
+
+use another_lib_v2::another_mod;
 
 fn outsider() {
+    another_mod::another_fn();
+    // crate::another_mod::another_fn();
     println!("outsider fn!");
 }
 
@@ -55,9 +60,8 @@ pub mod education {
         impl Log for Person {
             fn display_info(&self) {
 
-                crate::outsider();
-                // super -> going outside of current module, ..
-                super::super::outsider();
+                super::super::another_mod::another_fn();
+                crate::another_mod::another_fn();
 
                 println!("{} {} {} {:?}", self.name, self.last_name, self.age, self.id)
             }
