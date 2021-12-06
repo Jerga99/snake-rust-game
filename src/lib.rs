@@ -11,6 +11,7 @@ fn outsider() {
 
 pub mod education {
     pub mod learnig_rust {
+        use std::fmt;
 
         mod top_level {
             pub fn hi_there() {
@@ -32,17 +33,30 @@ pub mod education {
             }
         }
 
-        #[derive(Debug)]
         pub enum PersonId {
             Passport(u32),
             IndentityCard(u32, u32, u32),
         }
 
+        impl fmt::Display for PersonId {
+            fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                match self {
+                    PersonId::Passport(x) => {
+                        write!(f, "MY PASSPORT : {}", x)
+                    },
+                    PersonId::IndentityCard(x, y, z) => {
+                        write!(f, "This is my ID: ----> {} {} {} <-----", x, y, z)
+                    }
+                }
+            }
+        }
+
+
         pub struct Person {
             name: String, // fields
             last_name: String,
             age: u32,
-            id: PersonId,
+            pub id: PersonId,
         }
 
         pub struct Animal(pub String);
@@ -63,7 +77,7 @@ pub mod education {
                 super::super::another_mod::another_fn();
                 crate::another_mod::another_fn();
 
-                println!("{} {} {} {:?}", self.name, self.last_name, self.age, self.id)
+                println!("{} {} {} {}", self.name, self.last_name, self.age, self.id)
             }
         }
 
@@ -73,7 +87,8 @@ pub mod education {
                     name: "Default".to_string(),
                     last_name: "Default".to_string(),
                     age: 0,
-                    id: PersonId::IndentityCard(540, 320, 100)
+                    // id: PersonId::IndentityCard(540, 320, 100)
+                    id: PersonId::Passport(312398)
                 }
             }
 
