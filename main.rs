@@ -5,7 +5,7 @@
 // use snake_game::log_info_2;
 
 // use snake_game::*;
-use snake_game::{Person, Animal, log_info, log_info_2};
+use snake_game::learnig_rust::{Person, Animal, log_info, log_info_2};
 
 fn main() {
     let mut person = Person::new();
