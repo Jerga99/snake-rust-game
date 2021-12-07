@@ -15,7 +15,11 @@
 <!-- i32, i64, f32, f64 -->
 
 <!-- (module
+  (import "console" "log" (func $log))
+  (import "console" "error" (func $error))
   (func $sum (param $a i32) (param $b i32) (result i32)
+    call $log
+    call $error
     local.get $a
     local.get $b
     i32.add
