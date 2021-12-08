@@ -11,21 +11,3 @@
     <script src="./index.js"></script>
   </body>
 </html>
-
-<!-- we can either create memory in WebAssembly and export it to JS -->
-<!-- we can create memory in JS and import it to WebAssembly -->
-<!-- 1 means -> 1 page of memory, page has around 64KB -->
-<!-- (module
-  (import "console" "log" (func $log))
-  (import "console" "error" (func $error))
-  (memory (import "js" "mem") 1)
-  (data (i32.const 0) "Hi")
-  (func $sum (param $a i32) (param $b i32) (result i32)
-    call $log
-    call $error
-    local.get $a
-    local.get $b
-    i32.add
-  )
-  (export "sum" (func $sum))
-) -->
