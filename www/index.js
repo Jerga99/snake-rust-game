@@ -29,6 +29,22 @@ init().then(_ => {
     ctx.stroke();
   }
 
-  console.log(world.snake_head_idx());
+  function drawSnake() {
+    const snakeIdx = world.snake_head_idx();
+    const col = snakeIdx % worldWidth;
+    const row = Math.floor(snakeIdx / worldWidth);
+
+    ctx.beginPath();
+    ctx.fillRect(
+      col * CELL_SIZE,
+      row * CELL_SIZE,
+      CELL_SIZE,
+      CELL_SIZE
+    );
+    ctx.stroke();
+  }
+
+
   drawWorld();
+  drawSnake();
 })
