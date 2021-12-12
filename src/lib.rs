@@ -14,7 +14,7 @@ pub enum Direction {
     Left
 }
 
-struct SnakeCell(usize);
+pub struct SnakeCell(usize);
 
 struct Snake {
     body: Vec<SnakeCell>,
@@ -64,6 +64,21 @@ impl World {
     pub fn change_snake_dir(&mut self, direction: Direction) {
         self.snake.direction = direction;
     }
+
+    pub fn snake_length(&self) -> usize {
+        self.snake.body.len()
+    }
+
+    // *const is raw pointer
+    // borrowing rules doesn't apply to it
+    pub fn snake_cells(&self) -> *const SnakeCell {
+        self.snake.body.as_ptr()
+    }
+
+    // cannot return a reference to JS because of borring rules
+    // pub fn snake_cells(&self) -> &Vec<SnakeCell> {
+    //     &self.snake.body
+    // }
 
     pub fn update(&mut self) {
         let snake_idx = self.snake_head_idx();
