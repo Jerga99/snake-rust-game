@@ -69,16 +69,9 @@ impl World {
         self.snake.body.len()
     }
 
-    // *const is raw pointer
-    // borrowing rules doesn't apply to it
     pub fn snake_cells(&self) -> *const SnakeCell {
         self.snake.body.as_ptr()
     }
-
-    // cannot return a reference to JS because of borring rules
-    // pub fn snake_cells(&self) -> &Vec<SnakeCell> {
-    //     &self.snake.body
-    // }
 
     pub fn update(&mut self) {
         let snake_idx = self.snake_head_idx();

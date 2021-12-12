@@ -15,17 +15,6 @@ init().then(wasm => {
   canvas.height = worldWidth * CELL_SIZE;
   canvas.width = worldWidth * CELL_SIZE;
 
-  const snakeCellPtr = world.snake_cells();
-  const snakeLen = world.snake_length();
-
-  const snakeCells = new Uint32Array(
-    wasm.memory.buffer,
-    snakeCellPtr,
-    snakeLen
-  )
-
-  console.log(snakeCells);
-
   document.addEventListener("keydown", e => {
     switch(e.code) {
       case "ArrowUp":
