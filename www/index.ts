@@ -1,10 +1,11 @@
 
 import init, { World, Direction } from "snake_game";
+import { rnd } from "./utils/rnd";
 
 init().then(wasm => {
   const CELL_SIZE = 20;
   const WORLD_WIDTH = 8;
-  const snakeSpawnIdx = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
+  const snakeSpawnIdx = rnd(WORLD_WIDTH * WORLD_WIDTH);
 
   const world = World.new(WORLD_WIDTH, snakeSpawnIdx);
   const worldWidth = world.width();
