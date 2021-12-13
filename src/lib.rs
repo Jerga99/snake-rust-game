@@ -73,39 +73,31 @@ impl World {
         self.snake.body.as_ptr()
     }
 
-    pub fn update(&mut self) {
+    pub fn step(&mut self) {
+        let next_cell = self.gen_next_snake_cell();
+        self.snake.body[0] = next_cell;
+    }
+
+    fn gen_next_snake_cell(&self) -> SnakeCell {
         let snake_idx = self.snake_head_idx();
-        let (row, col) = self.index_to_cell(snake_idx);
-        let (row, col) = match self.snake.direction {
+        let row = snake_idx / self.width;
+
+        return match self.snake.direction {
             Direction::Right => {
-                (row, (col + 1) % self.width)
+                SnakeCell((row * self.width) + (snake_idx + 1) % self.width)
             },
             Direction::Left => {
-                (row, (col - 1) % self.width)
+                SnakeCell((row * self.width) + (snake_idx - 1) % self.width)
             },
             Direction::Up => {
-                ((row - 1) % self.width, col)
+                SnakeCell((snake_idx - self.width) % self.size)
             },
             Direction::Down => {
-                ((row +1) % self.width, col)
+                SnakeCell((snake_idx + self.width) % self.size)
             },
         };
-
-        let next_idx = self.cell_to_index(row, col);
-        self.set_snake_head(next_idx);
     }
 
-    fn set_snake_head(&mut self, idx: usize) {
-        self.snake.body[0].0 = idx;
-    }
-
-    fn index_to_cell(&self, idx: usize) -> (usize, usize) {
-        (idx / self.width, idx % self.width)
-    }
-
-    fn cell_to_index(&self, row: usize, col: usize) -> usize {
-        (row * self.width) + col
-    }
 }
 
 // wasm-pack build --target web
