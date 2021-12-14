@@ -128,8 +128,13 @@ impl World {
         }
 
         if self.reward_cell == self.snake_head_idx() {
+            if self.snake_length() < self.size {
+                self.reward_cell = World::gen_reward_cell(self.size, &self.snake.body);
+            } else {
+                self.reward_cell = 1000;
+            }
+
             self.snake.body.push(SnakeCell(self.snake.body[1].0));
-            self.reward_cell = World::gen_reward_cell(self.size, &self.snake.body);
         }
     }
 
