@@ -100,6 +100,10 @@ impl World {
        self.snake.body[0].0
     }
 
+    pub fn start_game(&mut self) {
+        self.status = Some(GameStatus::Played);
+    }
+
     pub fn change_snake_dir(&mut self, direction: Direction) {
         let next_cell = self.gen_next_snake_cell(&direction);
 
