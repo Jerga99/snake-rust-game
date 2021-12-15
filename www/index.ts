@@ -87,12 +87,19 @@ init().then(wasm => {
       world.snake_length()
     )
 
-    snakeCells.forEach((cellIdx, i) => {
+    // filter out duplicates
+    // reverse array
+
+    snakeCells
+      // .filter((cellIdx, i) => !(i > 0 && cellIdx === snakeCells[0]))
+      .slice()
+      .reverse()
+      .forEach((cellIdx, i) => {
       const col = cellIdx % worldWidth;
       const row = Math.floor(cellIdx / worldWidth);
 
       // we are overriding snake head color by body when we crush
-      ctx.fillStyle = i === 0 ? "#7878db" : "#000000";
+      ctx.fillStyle = i === snakeCells.length - 1  ? "#7878db" : "#000000";
 
       ctx.beginPath();
       ctx.fillRect(
