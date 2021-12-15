@@ -5,20 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+      .content-wrapper {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position:absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .game-panel {
+        margin-bottom: 20px;
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+    </style>
   </head>
   <body>
-    <h1>Hello World</h1>
-    <script src="./index.js"></script>
+    <div class="content-wrapper">
+      <div class="game-panel">
+        <div class="flex">
+          <div class="label">
+            Status:
+          </div>
+          <div id="game-status">
+            None
+          </div>
+        </div>
+        <div class="flex">
+          <div class="label">
+            Points:
+          </div>
+          <div id="points">
+          </div>
+        </div>
+        <div class="flex">
+          <button id="game-control-btn">
+            Play
+          </button>
+        </div>
+      </div>
+      <canvas id="snake-canvas"></canvas>
+    </div>
+    <script src="/bootstrap.js"></script>
   </body>
 </html>
-
-<!-- i32, i64, f32, f64 -->
-
-<!-- (module
-  (func $sum (param $a i32) (param $b i32) (result i32)
-    local.get $a
-    local.get $b
-    i32.add
-  )
-  (export "sum" (func $sum))
-) -->
