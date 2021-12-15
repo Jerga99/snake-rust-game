@@ -91,6 +91,7 @@ init().then(wasm => {
       const col = cellIdx % worldWidth;
       const row = Math.floor(cellIdx / worldWidth);
 
+      // we are overriding snake head color by body when we crush
       ctx.fillStyle = i === 0 ? "#7878db" : "#000000";
 
       ctx.beginPath();
@@ -117,6 +118,7 @@ init().then(wasm => {
   }
 
   function play() {
+    console.log("playing!");
     const fps = 3;
     setTimeout(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
