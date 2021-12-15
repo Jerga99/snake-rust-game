@@ -4,7 +4,7 @@ import { rnd } from "./utils/rnd";
 
 init().then(wasm => {
   const CELL_SIZE = 20;
-  const WORLD_WIDTH = 4;
+  const WORLD_WIDTH = 8;
   const snakeSpawnIdx = rnd(WORLD_WIDTH * WORLD_WIDTH);
 
   const world = World.new(WORLD_WIDTH, snakeSpawnIdx);
@@ -110,13 +110,8 @@ init().then(wasm => {
   }
 
   function drawGameStatus() {
-    const status = world.game_status();
     gameStatus.textContent = world.game_status_text();
     points.textContent = world.points().toString();
-
-    if (status == GameStatus.Won || status == GameStatus.Lost) {
-      gameControlBtn.textContent = "Re-Play";
-    }
   }
 
   function paint() {
@@ -127,9 +122,16 @@ init().then(wasm => {
   }
 
   function play() {
-    console.log("playing!");
+    const status = world.game_status();
+
+    if (status == GameStatus.Won || status == GameStatus.Lost) {
+      gameControlBtn.textContent = "Re-Play";
+      return;
+    }
+
     const fps = 3;
     setTimeout(() => {
+      console.log("Playing!");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       world.step();
       paint();
