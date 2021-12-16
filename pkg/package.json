@@ -1,0 +1,12 @@
+{
+  "name": "snake_game",
+  "version": "0.1.0",
+  "files": [
+    "snake_game_bg.wasm",
+    "snake_game.js",
+    "snake_game.d.ts"
+  ],
+  "module": "snake_game.js",
+  "types": "snake_game.d.ts",
+  "sideEffects": false
+}
