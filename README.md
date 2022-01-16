@@ -12,4 +12,4 @@
 5. Run the development server
 `npm start`
 
-6. Open the browser on localhost:8080
+6. Open the browser on `localhost:8080`
